@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-/*classe a parte per esser riutilizzata in fragment con tab*/
+/*classe a parte per esser riutilizzata in fragment con tabs->fragment*/
 public class SectionsPageAdapter extends FragmentPagerAdapter {
 
     /*lista dei frammenti*/
