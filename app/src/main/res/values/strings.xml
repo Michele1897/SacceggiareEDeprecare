@@ -1,8 +1,66 @@
 <resources>
-    <string name="app_name">My Application</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
-    <string name="tab_text_3">Tab 3</string>
+    <string name="app_name">Jolly Roger</string>
+    <string name="tab_text_1">Impostazioni</string>
+    <string name="tab_text_2">Controllo</string>
+    <string name="tab_text_3">Statistiche</string>
     <string name="action_settings">Settings</string>
-    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="colore_pareti">Colore pareti</string>
+    <string name="colore_pavimento">Colore pavimento</string>
+    <string name="conferma">Conferma</string>
+    <string name="connetti">Connetti</string>
+    <string name="pinza">Pinza</string>
+    <string name="braccio">Braccio</string>
+    <string name="reset_impostazioni">Reset Impostazioni</string>
+
+    <string name ="ogg_rilevati">Totale oggetti rilevati:</string>
+    <string name ="ogg_raccolti">Totale oggetti raccolti:</string>
+    <string name ="ogg_non_raccolti">Totale oggetti non raccolti:</string>
+    <string name ="col_rosso">Rossi:</string>
+    <string name ="col_giallo">Gialli:</string>
+    <string name ="col_verde">Verdi:</string>
+    <string name ="col_blu">Blu:</string>
+    <string name ="col_marrone">Marroni:</string>
+    <string name ="col_nero">Neri:</string>
+    <string name="objects_colours" />
+
+    <string name="icona_pirata" />
+    <string name="scelta_robot">Scegliere robot pirata</string>
+    <string name="auto_1">Scegliere gli oggetti da raccogliere</string>
+    <string name="auto_2">Inserisci una quantità, premi ∞ per raccogliere tutti gli oggetti rilevati di quel tipo o lascia il campo vuoto per non raccoglierli.</string>
+
+
+    <string-array name="robot_array">
+        <item>Scegliere robot pirata</item>
+        <item>Jolly Roger</item>
+        <item>Ev3</item>
+    </string-array>
+
+    <string-array name="wall_colours">
+        <item>Bianco</item>
+        <item>Nero</item>
+        <item>Rosso</item>
+        <item>Blu</item>
+        <item>Giallo</item>
+        <item>Marrone</item>
+        <item>Verde</item>
+    </string-array>
+
+    <string-array name="floor_colours">
+        <item>Bianco</item>
+        <item>Nero</item>
+        <item>Rosso</item>
+        <item>Blu</item>
+        <item>Giallo</item>
+        <item>Marrone</item>
+        <item>Verde</item>
+    </string-array>
+
+    <string-array name="objects_colours">
+        <item>Rossi:</item>
+        <item>Gialli:</item>
+        <item>Verdi:</item>
+        <item>Blu:</item>
+        <item>Marroni:</item>
+        <item>Neri:</item>
+    </string-array>
 </resources>
