@@ -15,6 +15,14 @@ public class GlobalVariables extends Application {
     private int floor = 0;
     private int walls = 0;
 
+    //private int[] oggTrovati = {0,0,0,0,0,0,0};
+    private int trovatiRossi = 0;
+    private int trovatiGialli = 0;
+    private int trovatiVerdi = 0;
+    private int trovatiBlu = 0;
+    private int trovatiMarroni = 0;
+    private int trovatiNeri = 0;
+
     private boolean sixthColorSearched = true;
         //di default mostro tutti i 6 riquadri per scegliere gli oggetti da raccogliere
         //sarà compito dell'utente premere conferma sulle impostazioni iniziali
@@ -93,6 +101,31 @@ public class GlobalVariables extends Application {
         this.objectsToCollect = objectsToCollect;
     }
 
+    public void modificaTrovati(int colore, int quantit)
+    {
+        switch (colore)
+            {
+                case 0 : {
+                    trovatiRossi = trovatiRossi + quantit;
+                }
+                case 1 : {
+                    trovatiGialli = trovatiGialli + quantit;
+                }
+                case 2 : {
+                    trovatiVerdi = trovatiVerdi + quantit;
+                }
+                case 3 : {
+                    trovatiBlu = trovatiBlu + quantit;
+                }
+                case 4 : {
+                    trovatiMarroni = trovatiMarroni + quantit;
+                }
+                case 5 : {
+                    trovatiNeri = trovatiNeri + quantit;
+                }
+
+            }
+    }
 
 
 
