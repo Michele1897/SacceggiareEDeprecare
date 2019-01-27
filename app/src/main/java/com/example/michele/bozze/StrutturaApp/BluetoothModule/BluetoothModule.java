@@ -38,6 +38,10 @@ public class BluetoothModule {
     volatile boolean stopWorker;
     GlobalVariables variabili;
 
+    final byte delimiter = 10;/*This is the ASCII code for a newline character
+            BYTE USATO PER SEPARARE MESSAGGI DIVERSI
+            POSTO IN CODA A MESSAGGIOi*/
+
     public BluetoothModule(BluetoothDevice tgt, GlobalVariables gbl){
         mmDevice = tgt;
         variabili = gbl;
@@ -89,17 +93,36 @@ public class BluetoothModule {
     // appropriati secondo dati appropriati interpretati dai byte ricevuti dal bot
     void sendToGV (GlobalVariables gv, byte[] msg)
         {
-            int i = 0;
+            //int i = 0;
             /*byte[] msg = message.getBytes();*/
+
             int length = msg.length;
             switch (msg[1]) {
 
                 case 0 :
-                    {
+                    {// e' un messaggio di colore trovato
+                        gv.modificaTrovati((int) msg[2], 1);
 
                     break;
                     }
             }
+        }
+
+    void richiediOggetto(int colore, int quantit)
+        {
+            byte[] msg = new byte[4];//crea messaggio
+            msg[0] = 1;
+            msg[1] = (byte) colore;
+            msg[2] = (byte) quantit;
+            msg[3] = delimiter;
+            try {
+                sendData(msg);
+            }
+            catch (IOException e)
+                {
+
+                }
+
         }
 
 
@@ -107,8 +130,7 @@ public class BluetoothModule {
     void beginListenForData()
     {
         //final Handler handler = new Handler();
-        final byte delimiter = 10; /*This is the ASCII code for a newline character
-            BYTE USATO PER SEPARARE MESSAGGI DIVERSI*/
+
 
         stopWorker = false;
         readBufferPosition = 0;
@@ -168,11 +190,11 @@ public class BluetoothModule {
         workerThread.start();
     }
 
-    void sendData(String message) throws IOException
+    void sendData(byte[] message) throws IOException
     {
         /*String msg = myTextbox.getText().toString();
         msg += "\n";*/
-        mmOutputStream.write(message.getBytes());
+        mmOutputStream.write(message);
         /*myLabel.setText("Data Sent");*/
     }
 
