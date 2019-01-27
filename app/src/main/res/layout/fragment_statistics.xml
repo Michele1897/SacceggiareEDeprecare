@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,250 +6,406 @@
     android:layout_height="match_parent"
     android:background="@drawable/sfondo">
 
-    <TextView
-        android:id="@+id/stringa_ogg_rilevati"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+
+    <TableLayout
+        android:id="@+id/TableLayout1"
+        android:layout_width="348dp"
+        android:layout_height="110dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="32dp"
-        android:fontFamily="sans-serif"
-        android:text="@string/ogg_rilevati"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/stringa_ogg_raccolti"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableRow
+            android:id="@+id/r0"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp">
 
 
-    <TextView
-        android:id="@+id/stringa_ogg_raccolti"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="8dp"
-        android:fontFamily="sans-serif"
-        android:text="@string/ogg_raccolti"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/raccolti_1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stringa_ogg_rilevati" />
+            <TextView
+                android:id="@+id/rilevati"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="sans-serif"
+                android:text="@string/ogg_rilevati"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.125" />
+
+            <TextView
+                android:id="@+id/number_rilevati"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_column="2"
+                android:background="@color/Bianco"
+                android:visibility="visible" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/r1"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginBottom="10dp">
 
 
-    <TextView
-        android:id="@+id/raccolti_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+            <TextView
+                android:id="@+id/raccolti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="60dp"
+                android:fontFamily="sans-serif"
+                android:text="@string/ogg_raccolti"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.125" />
+
+            <TextView
+                android:id="@+id/number_raccolti"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_column="2"
+                android:background="@color/Bianco"
+                android:visibility="visible" />
+        </TableRow>
+
+    </TableLayout>
+
+    <TableLayout
+        android:id="@+id/TableLayout2"
+        android:layout_width="365dp"
+        android:layout_height="332dp"
         android:layout_marginStart="8dp"
-        android:fontFamily="sans-serif"
-        android:text="@string/col_rosso"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/raccolti_2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.127"
-        app:layout_constraintStart_toEndOf="@+id/square_raccolti_1"
-        app:layout_constraintTop_toBottomOf="@+id/stringa_ogg_raccolti" />
-
-    <TextView
-        android:id="@+id/raccolti_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
-        android:text="@string/col_giallo"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/raccolti_3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.307"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/raccolti_1" />
-
-    <TextView
-        android:id="@+id/raccolti_3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="103dp"
-        android:fontFamily="sans-serif"
-        android:text="@string/col_verde"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/raccolti_4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/raccolti_2" />
-
-    <TextView
-        android:id="@+id/raccolti_4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
-        android:fontFamily="sans-serif"
-        android:text="@string/col_blu"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/raccolti_5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.293"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/raccolti_3" />
-
-    <TextView
-        android:id="@+id/raccolti_5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="sans-serif"
-        android:text="@string/col_marrone"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/raccolti_6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.325"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/raccolti_4" />
-
-    <TextView
-        android:id="@+id/raccolti_6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:fontFamily="sans-serif"
-        android:text="@string/col_nero"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/stringa_ogg_non_raccolti"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.302"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/raccolti_5" />
+        app:layout_constraintTop_toBottomOf="@+id/TableLayout1">
 
 
-    <TextView
-        android:id="@+id/stringa_ogg_non_raccolti"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="8dp"
-        android:fontFamily="sans-serif"
-        android:text="@string/ogg_non_raccolti"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.87" />
+        <TableRow
+            android:id="@+id/riga0"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:id="@+id/square_raccolti0"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_column="0"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="60dp"
+                android:background="@color/Rosso"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_bias="0.444"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/raccolti0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="55dp"
+                android:fontFamily="sans-serif"
+                android:text="@string/col_rosso"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.125" />
+
+            <TextView
+                android:id="@+id/number_square0"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_column="2"
+                android:background="@color/Bianco"
+                android:visibility="visible" />
+
+        </TableRow>
 
 
-    <TextView
-        android:id="@+id/square_raccolti_1"
-        android:layout_width="27dp"
-        android:layout_height="27dp"
-        android:layout_marginBottom="124dp"
-        android:layout_marginStart="32dp"
+        <TableRow
+            android:id="@+id/riga1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:id="@+id/square_raccolti1"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_column="0"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="60dp"
+                android:background="@color/Giallo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_bias="0.444"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/raccolti1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="55dp"
+                android:fontFamily="sans-serif"
+                android:text="@string/col_giallo"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.125" />
+
+            <TextView
+                android:id="@+id/number_square1"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_column="2"
+                android:background="@color/Bianco"
+                android:visibility="visible" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/riga2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:id="@+id/square_raccolti2"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_column="0"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="60dp"
+                android:background="@color/Verde"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_bias="0.444"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/raccolti2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="55dp"
+                android:fontFamily="sans-serif"
+                android:text="@string/col_verde"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.125" />
+
+            <TextView
+                android:id="@+id/number_square2"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_column="2"
+                android:background="@color/Bianco"
+                android:visibility="visible" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/riga3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:id="@+id/square_raccolti3"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_column="0"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="60dp"
+                android:background="@color/Blu"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_bias="0.444"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/raccolti3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="55dp"
+                android:fontFamily="sans-serif"
+                android:text="@string/col_blu"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.125" />
+
+            <TextView
+                android:id="@+id/number_square3"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_column="2"
+                android:background="@color/Bianco"
+                android:visibility="visible" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/riga4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:id="@+id/square_raccolti4"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_column="0"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="60dp"
+                android:background="@color/Marrone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_bias="0.444"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/raccolti4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="55dp"
+                android:fontFamily="sans-serif"
+                android:text="@string/col_marrone"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.125" />
+
+            <TextView
+                android:id="@+id/number_square4"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_column="2"
+                android:background="@color/Bianco"
+                android:visibility="visible" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/riga5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/square_raccolti5"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_column="0"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="60dp"
+                android:background="@color/Nero"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_bias="0.444"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/raccolti5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="55dp"
+                android:fontFamily="sans-serif"
+                android:text="@string/col_nero"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.125" />
+
+            <TextView
+                android:id="@+id/number_square5"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_column="2"
+                android:background="@color/Bianco"
+                android:visibility="visible" />
+        </TableRow>
+    </TableLayout>
+
+    <TableLayout
+        android:id="@+id/TableLayout3"
+        android:layout_width="344dp"
+        android:layout_height="81dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="8dp"
-        android:background="@color/Bianco"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.469"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/square_raccolti_2"
-        app:layout_constraintVertical_bias="1.0"
-        tools:visibility="visible" />
+        app:layout_constraintTop_toBottomOf="@+id/TableLayout2"
+        app:layout_constraintVertical_bias="0.0">
 
-    <TextView
-        android:id="@+id/square_raccolti_2"
-        android:layout_width="27dp"
-        android:layout_height="27dp"
-        android:layout_marginBottom="184dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/Bianco"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/square_raccolti_3"
-        app:layout_constraintVertical_bias="0.857"
-        tools:visibility="visible" />
+        <TableRow
+            android:id="@+id/r3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp">
 
-    <TextView
-        android:id="@+id/square_raccolti_3"
-        android:layout_width="27dp"
-        android:layout_height="27dp"
-        android:layout_marginBottom="240dp"
-        android:layout_marginStart="32dp"
-        android:background="@color/Bianco"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stringa_ogg_raccolti"
-        app:layout_constraintVertical_bias="1.0"
-        tools:visibility="visible" />
 
-    <TextView
-        android:id="@+id/square_raccolti_4"
-        android:layout_width="27dp"
-        android:layout_height="27dp"
-        android:layout_marginBottom="240dp"
-        android:layout_marginStart="32dp"
-        android:background="@color/Bianco"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stringa_ogg_raccolti"
-        app:layout_constraintVertical_bias="0.712"
-        tools:visibility="visible" />
+            <TextView
+                android:id="@+id/non_raccolti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="45dp"
+                android:fontFamily="sans-serif"
+                android:text="@string/ogg_non_raccolti"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.125" />
 
-    <TextView
-        android:id="@+id/square_raccolti_5"
-        android:layout_width="27dp"
-        android:layout_height="27dp"
-        android:layout_marginBottom="240dp"
-        android:layout_marginStart="32dp"
-        android:background="@color/Bianco"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stringa_ogg_raccolti"
-        app:layout_constraintVertical_bias="0.424"
-        tools:visibility="visible" />
+            <TextView
+                android:id="@+id/number_non_raccolti"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_column="2"
+                android:background="@color/Bianco"
+                android:visibility="visible" />
+        </TableRow>
 
-    <TextView
-        android:id="@+id/square_raccolti_6"
-        android:layout_width="27dp"
-        android:layout_height="27dp"
-        android:layout_marginBottom="240dp"
-        android:layout_marginStart="32dp"
-        android:background="@color/Bianco"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stringa_ogg_raccolti"
-        app:layout_constraintVertical_bias="0.127"
-        tools:visibility="visible" />
-
+    </TableLayout>
 
 </android.support.constraint.ConstraintLayout>
