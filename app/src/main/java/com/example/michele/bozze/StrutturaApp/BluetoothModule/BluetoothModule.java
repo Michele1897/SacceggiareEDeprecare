@@ -26,7 +26,7 @@ public class BluetoothModule {
     //BluetoothDevice target;
     //TextView myLabel;
     //EditText myTextbox;
-    BluetoothAdapter mBluetoothAdapter;
+    //BluetoothAdapter mBluetoothAdapter;
     BluetoothSocket mmSocket;
     BluetoothDevice mmDevice;
     OutputStream mmOutputStream;
@@ -42,6 +42,10 @@ public class BluetoothModule {
             BYTE USATO PER SEPARARE MESSAGGI DIVERSI
             POSTO IN CODA A MESSAGGIOi*/
 
+
+    //unico costruttore di bluetoothmodule
+    //tgt = bluetoothdevice appaiata selezionata dallo spinner di connectionactivity (n qualche modo)
+    //gbl = globalvariables preistanziata a cui si daranno dati ricevuti via bluetooth
     public BluetoothModule(BluetoothDevice tgt, GlobalVariables gbl){
         mmDevice = tgt;
         variabili = gbl;
@@ -89,9 +93,10 @@ public class BluetoothModule {
         //myLabel.setText("Bluetooth Opened");
     }
 
+    //metodo interno
     //interpretatore messaggi input, lancia metodi del globalvariables
-    // appropriati secondo dati appropriati interpretati dai byte ricevuti dal bot
-    void sendToGV (GlobalVariables gv, byte[] msg)
+    //appropriati secondo dati appropriati interpretati dai byte ricevuti via bluetooth
+    private void sendToGV (GlobalVariables gv, byte[] msg)
         {
             //int i = 0;
             /*byte[] msg = message.getBytes();*/
@@ -124,10 +129,35 @@ public class BluetoothModule {
                 }
 
         }
+    private void muoviAvanti(){
+        muovi(8);
+    }
+    private void muoviDietro(){
+        muovi(2);
+    }
+    private void muoviDestra(){
+        muovi(6);
+    }
+    private void muoviSinistra(){
+        muovi(4);
+    }
 
+    private void muovi(int dir){
+        byte[] msg = new byte[3];
+        msg[0] = 2;
+        msg[1] = (byte) dir;
+        msg[3] = delimiter;
+        try{
+            sendData(msg);
+        }
+        catch (IOException e)
+            {
 
+            }
+    }
 
-    void beginListenForData()
+    //metodo interno
+    private void beginListenForData()
     {
         //final Handler handler = new Handler();
 
