@@ -1,5 +1,7 @@
 package com.example.michele.bozze.StrutturaApp;
 
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 
@@ -11,10 +13,14 @@ import com.example.michele.bozze.Sezioni.ControlsFragment;
 import com.example.michele.bozze.Sezioni.SettingsFragment;
 import com.example.michele.bozze.Sezioni.StatisticsFragment;
 
+import java.util.Set;
+
 public class MainActivity extends AppCompatActivity {
+
 
     private ViewPager viewpager;
     private SectionsPageAdapter mSectionsPageAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewpager);
+
+
     }
 
     private void setupViewPager(ViewPager viewpager){
