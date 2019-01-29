@@ -12,6 +12,7 @@
     <string name="pinza">Pinza</string>
     <string name="braccio">Braccio</string>
     <string name="reset_impostazioni">Reset Impostazioni</string>
+    <string name="messaggio">Benvenuti nell\'app di Jolly Roger! Scegliete il vostro robot pirata! ARRGHHH!!!</string>
 
     <string name ="ogg_rilevati">Totale oggetti rilevati:</string>
     <string name ="ogg_raccolti">Totale oggetti raccolti:</string>
