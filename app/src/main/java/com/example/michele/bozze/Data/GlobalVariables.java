@@ -127,6 +127,12 @@ public class GlobalVariables extends Application {
             }
     }
 
+    public int[] giveTrovati()
+        {
+            int[] res = {trovatiRossi, trovatiGialli, trovatiVerdi, trovatiBlu, trovatiMarroni, trovatiNeri};
+            return res;
+        }
+
 
 
 

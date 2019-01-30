@@ -132,7 +132,7 @@
                 app:layout_constraintHorizontal_bias="0.125" />
 
             <TextView
-                android:id="@+id/number_square0"
+                android:id="@+id/number_trovati_rossi"
                 android:layout_width="27dp"
                 android:layout_height="27dp"
                 android:layout_column="2"
@@ -177,7 +177,7 @@
                 app:layout_constraintHorizontal_bias="0.125" />
 
             <TextView
-                android:id="@+id/number_square1"
+                android:id="@+id/number_trovati_gialli"
                 android:layout_width="27dp"
                 android:layout_height="27dp"
                 android:layout_column="2"
@@ -220,7 +220,7 @@
                 app:layout_constraintHorizontal_bias="0.125" />
 
             <TextView
-                android:id="@+id/number_square2"
+                android:id="@+id/number_trovati_verdi"
                 android:layout_width="27dp"
                 android:layout_height="27dp"
                 android:layout_column="2"
@@ -263,7 +263,7 @@
                 app:layout_constraintHorizontal_bias="0.125" />
 
             <TextView
-                android:id="@+id/number_square3"
+                android:id="@+id/number_trovati_blu"
                 android:layout_width="27dp"
                 android:layout_height="27dp"
                 android:layout_column="2"
@@ -306,7 +306,7 @@
                 app:layout_constraintHorizontal_bias="0.125" />
 
             <TextView
-                android:id="@+id/number_square4"
+                android:id="@+id/number_trovati_marroni"
                 android:layout_width="27dp"
                 android:layout_height="27dp"
                 android:layout_column="2"
@@ -348,7 +348,7 @@
                 app:layout_constraintHorizontal_bias="0.125" />
 
             <TextView
-                android:id="@+id/number_square5"
+                android:id="@+id/number_trovati_neri"
                 android:layout_width="27dp"
                 android:layout_height="27dp"
                 android:layout_column="2"

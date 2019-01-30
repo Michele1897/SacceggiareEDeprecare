@@ -8,6 +8,7 @@ import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
@@ -24,27 +25,35 @@ import java.util.Set;
 import java.util.UUID;
 
 public class BluetoothModule {
-
+    //int counter;
+    //Thread workerThread;
     //BluetoothDevice target;
     //TextView myLabel;
     //EditText myTextbox;
-    public final BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-    BluetoothSocket mmSocket;
-    BluetoothDevice mmDevice;
-    OutputStream mmOutputStream;
-    InputStream mmInputStream;
-    Thread workerThread;
-    byte[] readBuffer;
-    int readBufferPosition;
-    //int counter;
-    volatile boolean stopWorker;
-    GlobalVariables variabili;
-    BluetoothServerSocket mBtServerSocket;
-    public final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
-    final byte delimiter = 10;/*This is the ASCII code for a newline character
-            BYTE USATO PER SEPARARE MESSAGGI DIVERSI
-            POSTO IN CODA A MESSAGGIOi*/
+    private final BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+    private BluetoothDevice mmDevice;
+
+    private BluetoothSocket mmSocket;
+    private OutputStream mmOutputStream;
+    private InputStream mmInputStream;
+
+    private byte[] readBuffer;
+    private int readBufferPosition;
+    private Thread gestoreIO;
+
+    private volatile boolean stopWorker;
+    private GlobalVariables variabili;
+    private BluetoothServerSocket mBtServerSocket;
+    private final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+    private boolean gestore;
+
+    private final byte delimiter = 10;//This is the ASCII code for a newline character
+           // BYTE USATO PER SEPARARE MESSAGGI DIVERSI
+           // POSTO IN CODA A MESSAGGIO
+    private boolean connected;
+
+
 
 
     //unico costruttore di bluetoothmodule
@@ -53,11 +62,13 @@ public class BluetoothModule {
     public BluetoothModule(BluetoothDevice tgt, GlobalVariables gbl){
         mmDevice = tgt;
         variabili = gbl;
+        gestore = false;
 
     }
 
     //thread per connettersi con client, richiede server chiami listenUsingRfcommWithServiceRecord("titolo arbitrario", UUID = MY_UUID)
-    void openBT() throws IOException
+    //void openBT() throws IOException obsoleto
+    void openBT()
     {
         //UUID uuid =  //Standard SerialPortService ID
         //mmSocket = mmDevice.createRfcommSocketToServiceRecord(MY_UUID);
@@ -77,7 +88,7 @@ public class BluetoothModule {
         private final BluetoothSocket mmSocket;
         private final BluetoothDevice mmDevice;
 
-        public ConnectThread(BluetoothDevice device) {
+        ConnectThread(BluetoothDevice device) {
             // Use a temporary object that is later assigned to mmSocket
             // because mmSocket is final.
             BluetoothSocket tmp = null;
@@ -121,6 +132,7 @@ public class BluetoothModule {
             try {
                 mmSocket.close();
             } catch (IOException e) {
+                e.printStackTrace();
                 //Log.e(TAG, "Could not close the client socket", e);
             }
         }
@@ -158,7 +170,7 @@ public class BluetoothModule {
             }
             catch (IOException e)
                 {
-
+                    e.printStackTrace();
                 }
 
         }
@@ -175,17 +187,19 @@ public class BluetoothModule {
         muovi(4);
     }
 
+    //crea messaggio per operazione di movimento
+    // e lo invia a senddata
     private void muovi(int dir){
         byte[] msg = new byte[3];
         msg[0] = 2;
         msg[1] = (byte) dir;
-        msg[3] = delimiter;
+        msg[2] = delimiter;
         try{
             sendData(msg);
         }
         catch (IOException e)
             {
-
+                e.printStackTrace();
             }
     }
 
@@ -205,7 +219,7 @@ public class BluetoothModule {
     private class AcceptThread extends Thread {
         private final BluetoothServerSocket mmServerSocket;
 
-        public AcceptThread() {
+        AcceptThread() {
             // Use a temporary object that is later assigned to mmServerSocket
             // because mmServerSocket is final.
             BluetoothServerSocket tmp = null;
@@ -219,12 +233,13 @@ public class BluetoothModule {
         }
 
         public void run() {
-            BluetoothSocket socket = null;
+            BluetoothSocket socket;
             // Keep listening until exception occurs or a socket is returned.
             while (true) {
                 try {
                     socket = mmServerSocket.accept();
                 } catch (IOException e) {
+                    e.printStackTrace();
                     //Log.e(TAG, "Socket's accept() method failed", e);
                     break;
                 }
@@ -235,9 +250,11 @@ public class BluetoothModule {
                     manageMyConnectedSocket(socket);
                     try {
                         mmServerSocket.close();
+                        break;
                     }
                     catch(IOException e){
-
+                        e.printStackTrace();
+                        break;
                     }
                     finally {
                         break;//mi stupisco di essermene ricordato
@@ -252,6 +269,7 @@ public class BluetoothModule {
                 mmServerSocket.close();
             } catch (IOException e) {
                 //Log.e(TAG, "Could not close the connect socket", e);
+                e.printStackTrace();
             }
         }
     }
@@ -259,49 +277,141 @@ public class BluetoothModule {
     private void manageMyConnectedSocket(BluetoothSocket socket){
         //mmSocket = mmDevice.createRfcommSocketToServiceRecord(MY_UUID);
         mmSocket = socket;
-        connected = true;
 
-        try {
-            mmSocket.connect();
-
-        }
-        catch (IOException e){
-            connected = false;
-        }
         try{
             mmOutputStream = mmSocket.getOutputStream();
 
         }catch (IOException e) {
-
+            e.printStackTrace();
         }
 
         try{
             mmInputStream = mmSocket.getInputStream();
         }catch (IOException e) {
-
+            e.printStackTrace();
         }
 
+        //crea thread di gestione input/output e lo avvia
+        gestoreIO = new ConnectedThread(mmSocket);
+        gestoreIO.start();
+        gestore = true;
+    }
 
+    //thread che gestisce stream
+    private class ConnectedThread extends Thread {
+        private final BluetoothSocket mmSocket;
+        private final InputStream mmInStream;
+        private final OutputStream mmOutStream;
+        private byte[] mmBuffer; // mmBuffer store for the stream
+
+        ConnectedThread(BluetoothSocket socket) {
+            mmSocket = socket;
+            InputStream tmpIn = null;
+            OutputStream tmpOut = null;
+
+            // Get the input and output streams; using temp objects because
+            // member streams are final.
+            try {
+                tmpIn = socket.getInputStream();
+            } catch (IOException e) {
+                e.printStackTrace();
+                //Log.e(TAG, "Error occurred when creating input stream", e);
+            }
+            try {
+                tmpOut = socket.getOutputStream();
+            } catch (IOException e) {
+                e.printStackTrace();
+                //Log.e(TAG, "Error occurred when creating output stream", e);
+            }
+
+            mmInStream = tmpIn;
+            mmOutStream = tmpOut;
+        }
+
+        public void run() {
+            mmBuffer = new byte[1024];
+            int numBytes; // bytes returned from read()
+
+            // Keep listening to the InputStream until an exception occurs.
+            while (true) {
+                try {
+                    // Read from the InputStream.
+                    //read salva contenuti inputstream in mmbuffer e restituisce
+                    //numero celle occupate
+                    //NB: read e BLOCCANTE finche non arriva qualcosa in inputstream
+
+                    numBytes = mmInStream.read(mmBuffer);
+
+
+                    // Send the obtained bytes to the UI activity.
+                    //Message readMsg = mHandler.obtainMessage(
+                     //       MessageConstants.MESSAGE_READ, numBytes, -1,
+                     //       mmBuffer);
+                    //readMsg.sendToTarget();
+                } catch (IOException e) {
+                    //Log.d(TAG, "Input stream was disconnected", e);
+                    e.printStackTrace();
+                    break;
+                }
+            }
+        }
+
+        // Call this from the main activity to send data to the remote device.
+        public void write(byte[] bytes) {
+            try {
+                mmOutStream.write(bytes);
+
+                // Share the sent message with the UI activity.
+                //Message writtenMsg = mHandler.obtainMessage(
+                //        MessageConstants.MESSAGE_WRITE, -1, -1, mmBuffer);
+                //writtenMsg.sendToTarget();
+            } catch (IOException e) {
+                e.printStackTrace();
+                //Log.e(TAG, "Error occurred when sending data", e);
+
+                // Send a failure message back to the activity.
+                //Message writeErrorMsg =
+                //        mHandler.obtainMessage(MessageConstants.MESSAGE_TOAST);
+                //Bundle bundle = new Bundle();
+                //bundle.putString("toast",
+                //        "Couldn't send data to the other device");
+                //writeErrorMsg.setData(bundle);
+                //mHandler.sendMessage(writeErrorMsg);
+            }
+        }
+
+        // Call this method from the main activity to shut down the connection.
+        public void cancel() {
+            try {
+                mmSocket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+                //Log.e(TAG, "Could not close the connect socket", e);
+            }
+        }
     }
 
 
-    //metodo interno, lancia
+    //metodo interno obsoleto
     private void beginListenForData()
     {
         //final Handler handler = new Handler();
         stopWorker = false;
         readBufferPosition = 0;
         readBuffer = new byte[1024];
-        workerThread = new AcceptThread();
-        workerThread.start();
+        //workerThread = new AcceptThread();
+        //workerThread.start();
     }
 
-    void sendData(byte[] message) throws IOException
+    //metodo universale per inviare dati
+    //esempio usa metodo write di connectedthread
+    private void sendData(byte[] message) throws IOException
     {
         /*String msg = myTextbox.getText().toString();
         msg += "\n";*/
         mmOutputStream.write(message);
         /*myLabel.setText("Data Sent");*/
+
     }
 
     void closeBT() throws IOException
@@ -313,3 +423,86 @@ public class BluetoothModule {
         /*myLabel.setText("Bluetooth Closed");*/
     }
 }
+
+
+
+//segue handler usato dall esempio per passare messaggi dall'oggetto
+// bluetoothchatservic (per noi bluetoothmodule) a activity
+/*private final Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            FragmentActivity activity = getActivity();
+            switch (msg.what) {
+                case Constants.MESSAGE_STATE_CHANGE:
+                    switch (msg.arg1) {
+                        case BluetoothChatService.STATE_CONNECTED:
+                            setStatus(getString(R.string.title_connected_to, mConnectedDeviceName));
+                            mConversationArrayAdapter.clear();
+                            break;
+                        case BluetoothChatService.STATE_CONNECTING:
+                            setStatus(R.string.title_connecting);
+                            break;
+                        case BluetoothChatService.STATE_LISTEN:
+                        case BluetoothChatService.STATE_NONE:
+                            setStatus(R.string.title_not_connected);
+                            break;
+                    }
+                    break;
+                case Constants.MESSAGE_WRITE:
+                    byte[] writeBuf = (byte[]) msg.obj;
+                    // construct a string from the buffer
+                    String writeMessage = new String(writeBuf);
+                    mConversationArrayAdapter.add("Me:  " + writeMessage);
+                    break;
+                case Constants.MESSAGE_READ:
+                    byte[] readBuf = (byte[]) msg.obj;
+                    // construct a string from the valid bytes in the buffer
+                    String readMessage = new String(readBuf, 0, msg.arg1);
+                    mConversationArrayAdapter.add(mConnectedDeviceName + ":  " + readMessage);
+                    break;
+                case Constants.MESSAGE_DEVICE_NAME:
+                    // save the connected device's name
+                    mConnectedDeviceName = msg.getData().getString(Constants.DEVICE_NAME);
+                    if (null != activity) {
+                        Toast.makeText(activity, "Connected to "
+                                + mConnectedDeviceName, Toast.LENGTH_SHORT).show();
+                    }
+                    break;
+                case Constants.MESSAGE_TOAST:
+                    if (null != activity) {
+                        Toast.makeText(activity, msg.getData().getString(Constants.TOAST),
+                                Toast.LENGTH_SHORT).show();
+                    }
+                    break;
+            }
+        }
+    };
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case REQUEST_CONNECT_DEVICE_SECURE:
+                // When DeviceListActivity returns with a device to connect
+                if (resultCode == Activity.RESULT_OK) {
+                    connectDevice(data, true);
+                }
+                break;
+            case REQUEST_CONNECT_DEVICE_INSECURE:
+                // When DeviceListActivity returns with a device to connect
+                if (resultCode == Activity.RESULT_OK) {
+                    connectDevice(data, false);
+                }
+                break;
+            case REQUEST_ENABLE_BT:
+                // When the request to enable Bluetooth returns
+                if (resultCode == Activity.RESULT_OK) {
+                    // Bluetooth is now enabled, so set up a chat session
+                    setupChat();
+                } else {
+                    // User did not enable Bluetooth or an error occurred
+                    Log.d(TAG, "BT not enabled");
+                    Toast.makeText(getActivity(), R.string.bt_not_enabled_leaving,
+                            Toast.LENGTH_SHORT).show();
+                    getActivity().finish();
+                }
+        }
+    }*/
