@@ -82,9 +82,11 @@ public class ConnectionActivity extends AppCompatActivity {
 
             //da device a globalvariables
             //metodo automaticamente istanzia bluetoothmodule e connette
-            GlobalVariables gv = (GlobalVariables) getApplication();
-            Log.e(TAG, myDevice.getName());
-            gv.setupConnection(myDevice);
+            if(myDevice!=null){
+                GlobalVariables gv = (GlobalVariables) getApplication();
+                Log.e(TAG, myDevice.getName());
+                gv.setupConnection(myDevice);
+            }
             //LOGGING GOES HERE
 
             startActivity(new Intent("android.intent.action.MainActivity"));
