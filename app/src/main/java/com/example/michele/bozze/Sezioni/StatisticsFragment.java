@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +15,9 @@ import com.example.michele.bozze.Data.GlobalVariables;
 import com.example.michele.bozze.R;
 
 public class StatisticsFragment extends Fragment {
-    TextView trovatiRossi, trovatiGialli, trovatiVerdi, trovatiBlu, trovatiMarroni, trovatiNeri, trovatiTotale, rilevati, nonRaccolti;
-    GlobalVariables myVariables;
+
+    TextView t [];
+
     public StatisticsFragment() {
 
     }
@@ -23,37 +25,45 @@ public class StatisticsFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_statistics,container,false);
+        GlobalVariables g = (GlobalVariables)(getActivity().getApplication());
 
-        //init textview varie, forse sta roba va in oncreate? boh
-        trovatiBlu = (TextView) view.findViewById(R.id.number_trovati_blu);
-        trovatiRossi = (TextView) view.findViewById(R.id.number_trovati_rossi);
-        trovatiVerdi = (TextView) view.findViewById(R.id.number_trovati_verdi);
-        trovatiMarroni = (TextView) view.findViewById(R.id.number_trovati_marroni);
-        trovatiGialli = (TextView) view.findViewById(R.id.number_trovati_gialli);
-        trovatiNeri = (TextView) view.findViewById(R.id.number_trovati_neri);
-        trovatiTotale = (TextView) view.findViewById(R.id.number_raccolti);
-        rilevati = (TextView) view.findViewById(R.id.number_rilevati);
-        nonRaccolti = (TextView) view.findViewById(R.id.number_non_raccolti);
+            //inizializzazione elementi grafici
+        t =  new TextView[10];
+        t[0] = view.findViewById(R.id.number_rilevati);
+        t[1] = view.findViewById(R.id.number_raccolti);
+        t[2] = view.findViewById(R.id.number_trovati_neri);
+        t[3] = view.findViewById(R.id.number_trovati_blu);
+        t[4] = view.findViewById(R.id.number_trovati_rossi);
+        t[5] = view.findViewById(R.id.number_trovati_verdi);
+        t[6] = view.findViewById(R.id.number_trovati_gialli);
+        t[7] = view.findViewById(R.id.number_trovati_bianchi);
+        t[8] = view.findViewById(R.id.number_trovati_marroni);
+        t[9] = view.findViewById(R.id.number_non_raccolti);
 
-        //linka a globalvariables per semplicita
-        try {
-            myVariables = (GlobalVariables) getActivity().getApplication();
-        }
-        catch (NullPointerException e){
-            e.printStackTrace();
-        }
-        //ye gods, that casting
-
-        //inizializza contenuti
-        updateTexts();
-
+        setNumbers();
 
 
         return view;
     }
+        //prende da GlobalVariables i valori e li mette nelle celle
+    public void setNumbers(){
+        GlobalVariables g = (GlobalVariables)(getActivity().getApplication());
+        t[0].setText(Integer.toString(g.totalDetectedObjects()));
+        t[1].setText(Integer.toString(g.totalCollectedObjects()));
+
+        int temp [] = g.getCollectedObjects();
+        t[2].setText(Integer.toString(temp[0]));
+        t[3].setText(Integer.toString(temp[1]));
+        t[4].setText(Integer.toString(temp[2]));
+        t[5].setText(Integer.toString(temp[3]));
+        t[6].setText(Integer.toString(temp[4]));
+        t[7].setText(Integer.toString(temp[5]));
+        t[8].setText(Integer.toString(temp[6]));
+        t[9].setText(Integer.toString(g.getNotCollectedObjects()));
+
+    }
 
     //metodo a parte perche va rimandato a ogni cambiamento di valori
-    //altrimenti rimangono i vecchi lol
     public void updateTexts()
         {
 
@@ -63,7 +73,7 @@ public class StatisticsFragment extends Fragment {
             //{trovatiRossi, trovatiGialli, trovatiVerdi, trovatiBlu, trovatiMarroni, trovatiNeri}
             //coupling level: BLACK HOLE
             String warningskiller;
-            int[] trovati = myVariables.giveTrovati();
+            /*int[] trovati = myVariables.giveTrovati();
             int totale = trovati[0] + trovati[1] + trovati[2] + trovati[3] + trovati[4] + trovati[5];
             warningskiller = ""+ totale;
             trovatiTotale.setText(warningskiller);
@@ -85,5 +95,6 @@ public class StatisticsFragment extends Fragment {
             //nonRaccolti.setText(""+);
             //manca rilevati
             //rilevati.setText(""+);
+            */
         }
 }

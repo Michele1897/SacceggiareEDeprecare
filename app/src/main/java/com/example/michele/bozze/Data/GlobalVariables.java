@@ -1,6 +1,7 @@
 package com.example.michele.bozze.Data;
 
 import android.app.Application;
+import android.bluetooth.BluetoothDevice;
 import android.graphics.Color;
 import android.util.Log;
 import android.util.Pair;
@@ -9,158 +10,126 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import com.example.michele.bozze.R;
+import com.example.michele.bozze.StrutturaApp.BluetoothModule.BluetoothModule;
+
+    /* PER SEBASTIANO!!!!
+
+        NON ESISTE PIù IL METODO modificaTrovati(int,int)
+        NELLA CLASSE BluetoothModule, RIGA 154, L'HO COMMENTATO
+
+       PER SEBASTIANO!!!!
+     */
 
 public class GlobalVariables extends Application {
 
-    private int floor = 0;
-    private int walls = 0;
+    /*
+    Ordine dei colori (numero restituito dal robot):
+        0: No color
+        1: Black
+        2: Blue
+        3: Green
+        4: Yellow
+        5: Red
+        6: White
+        7: Brown
+     */
 
-    //private int[] oggTrovati = {0,0,0,0,0,0,0};
-    private int trovatiRossi = 0;
-    private int trovatiGialli = 0;
-    private int trovatiVerdi = 0;
-    private int trovatiBlu = 0;
-    private int trovatiMarroni = 0;
-    private int trovatiNeri = 0;
 
-    private boolean sixthColorSearched = true;
-        //di default mostro tutti i 6 riquadri per scegliere gli oggetti da raccogliere
-        //sarà compito dell'utente premere conferma sulle impostazioni iniziali
-
-    private HashMap<String,Integer> colors;
-    private HashMap<String,Pair<Integer,Integer>> objectsToCollect;
-
-    public void selectColors(){
-        selectColors(null,null);
-        colors.remove("Bianco");
+        //variabili e metodi per il bluetooth (per Sebastiano)
+    BluetoothModule b1;
+    BluetoothDevice mDevice;
+    public void setmDevice(BluetoothDevice mDevice) {
+        this.mDevice = mDevice;
     }
-    public void selectColors(String ifloor, String iwalls){
-        colors = new HashMap<>();
-        colors.put("Rosso",getResources().getColor(R.color.Rosso));
-        colors.put("Nero",getResources().getColor(R.color.Nero));
-        colors.put("Bianco",getResources().getColor(R.color.Bianco));
-        colors.put("Blu",getResources().getColor(R.color.Blu));
-        colors.put("Verde",getResources().getColor(R.color.Verde));
-        colors.put("Giallo",getResources().getColor(R.color.Giallo));
-        colors.put("Marrone",getResources().getColor(R.color.Marrone));
-
-        floor = colors.get(ifloor);
-        walls = colors.get(iwalls);
-
-        colors.remove(ifloor);
-        colors.remove(iwalls);
-
-        sixthColorSearched=colors.size()==6;
+    public void createBTModule(){
+        
     }
 
-    public void setObjectsToCollect(int a[]){
-        objectsToCollect = new HashMap<>();
-        Object keySet [] = colors.keySet().toArray();
-        for(int i=0;i<a.length;i++){
-            objectsToCollect.put(keySet[i].toString(),new Pair(colors.get(keySet[i].toString()),a[i]));
-        }
-    }
-        //dato un colore, ritorna il numero di elementi ancora da cercare
-    public int getCounter(String color){
-        return objectsToCollect.get(color).getFirst();
+    //questo array tiene conto del numero di oggetti da raccogliere, inseriti dall'utente
+    int [] objectsToCollect = new int [7];
+
+    //questo array tiene conto degli oggetti raccolti dal robot
+    int [] collectedObjects = new int [7];
+
+    //oggetti che il robot ignora
+    int notCollectedObjects = 0;
+
+
+    /*
+    Dati i numeri degli oggetti inseriti dall'utente, crea l'array e il
+    relativo array di oggetti da raccogliere
+
+    Se è zero, non è da raccogliere nessun oggetto di quel colore
+    Se è -1, deve raccogliere tutti quelli che trova
+
+    */
+    public void setObjectsToCollect(int [] a){
+        System.arraycopy(a,0,this.objectsToCollect,0,7);
+        collectedObjects = new int [7];
     }
 
-        //metodi getter e setter vari autogenerati
-    public int getFloor() {
-        return floor;
+
+    //ritorna il numeri totale di oggetti raccolti
+    public int totalCollectedObjects(){
+        int sum = 0;
+        for(int a:this.collectedObjects)
+            sum+=a;
+        return sum;
     }
-    public void setFloor(int floor) {
-        this.floor = floor;
+    //ritorna tutti gli oggetti ignorati
+    public int getNotCollectedObjects() {
+        return notCollectedObjects;
+    }
+    //ritorna il numero totale di oggetti rilevati, raccolti o ignorati
+    public int totalDetectedObjects(){
+        return totalCollectedObjects()+getNotCollectedObjects();
     }
 
-    public int getWalls() {
-        return walls;
-    }
-    public void setWalls(int walls) {
-        this.walls = walls;
-    }
-
-    public boolean isSixthColorSearched() {
-        return sixthColorSearched;
-    }
-    public void setSixthColorSearched(boolean sixthColorSearched) {
-        this.sixthColorSearched = sixthColorSearched;
-    }
-
-    public HashMap<String, Integer> getColors() {
-        return colors;
-    }
-    public void setColors(HashMap<String, Integer> colors) {
-        this.colors = colors;
+    /*
+    Metodi per aggiornare i vari array sulla base dell'input ricevuto dal robot
+    (se trova oggetti)
+    P è il numero dell'oggetto dato dal robot (vedere il commento a inizio codice,
+    dove in base al colore dell'oggetto che rileva passa un numero diverso
+    I numeri vanno da 1 a 7, dunque sarà da decrementare di 1
+    NB!!: se dovessero sorgere problemi posso fare un mapping tra le stringhe
+    es "Rosso" -> 5 per agevolare le cose
+    Oppure posso fare un'insieme di costanti es: final static int Rosso = 5
+    */
+    public void collectObject(int p){
+        /*
+        L'array di oggetti da collezionare viene decrementato
+        L'array di oggetti collezionati si incrementa
+         */
+        objectsToCollect[p-1]--;
+        collectedObjects[p-1]++;
     }
 
-    public HashMap<String, Pair<Integer, Integer>> getObjectsToCollect() {
+    //AGGIUNGERE QUA LE VARIE FUNZIONI
+
+    //funzione per aggiungere un oggetto ignorato, dipende da come lo passiamo dal robot
+
+
+    //funzione per ottenere il numero di oggetti raccolti di un solo colore
+
+
+
+    /*
+        Altri metodi getter e setter autogenerati
+     */
+    public int[] getObjectsToCollect() {
         return objectsToCollect;
     }
-    public void setObjectsToCollect(HashMap<String, Pair<Integer, Integer>> objectsToCollect) {
-        this.objectsToCollect = objectsToCollect;
+
+    public int[] getCollectedObjects() {
+        return collectedObjects;
     }
 
-    public void modificaTrovati(int colore, int quantit)
-    {
-        switch (colore)
-            {
-                case 0 : {
-                    trovatiRossi = trovatiRossi + quantit;
-                }
-                case 1 : {
-                    trovatiGialli = trovatiGialli + quantit;
-                }
-                case 2 : {
-                    trovatiVerdi = trovatiVerdi + quantit;
-                }
-                case 3 : {
-                    trovatiBlu = trovatiBlu + quantit;
-                }
-                case 4 : {
-                    trovatiMarroni = trovatiMarroni + quantit;
-                }
-                case 5 : {
-                    trovatiNeri = trovatiNeri + quantit;
-                }
-
-            }
+    public void setCollectedObjects(int[] collectedObjects) {
+        this.collectedObjects = collectedObjects;
     }
 
-    public int[] giveTrovati()
-        {
-            int[] res = {trovatiRossi, trovatiGialli, trovatiVerdi, trovatiBlu, trovatiMarroni, trovatiNeri};
-            return res;
-        }
-
-
-
-
-    //il primo sarà l'RGB, il secondo il numero di oggetti da raccogliere
-    private class Pair<F,S> {
-        private F first;
-        private S second;
-
-        public Pair(F first, S second) {
-            this.first = first;
-            this.second = second;
-        }
-
-        public F getFirst() {
-            return first;
-        }
-
-        public void setFirst(F first) {
-            this.first = first;
-        }
-
-        public S getSecond() {
-            return second;
-        }
-
-        public void setSecond(S second) {
-            this.second = second;
-        }
+    public void setNotCollectedObjects(int notCollectedObjects) {
+        this.notCollectedObjects = notCollectedObjects;
     }
 }
 

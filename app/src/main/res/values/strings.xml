@@ -1,8 +1,8 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="app_name">Jolly Roger</string>
-    <string name="tab_text_1">Impostazioni</string>
-    <string name="tab_text_2">Controllo</string>
+    <string name="tab_text_1">Automatico</string>
+    <string name="tab_text_2">Manuale</string>
     <string name="tab_text_3">Statistiche</string>
     <string name="action_settings">Settings</string>
     <string name="colore_pareti">Colore pareti</string>
@@ -23,6 +23,7 @@
     <string name ="col_blu">Blu:</string>
     <string name ="col_marrone">Marroni:</string>
     <string name ="col_nero">Neri:</string>
+    <string name ="col_bianchi">Bianchi:</string>
     <string name="objects_colours" />
 
     <string name="icona_pirata" />

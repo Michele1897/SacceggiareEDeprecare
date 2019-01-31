@@ -16,7 +16,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/TableLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.578"
         app:layout_constraintStart_toStartOf="parent"
@@ -117,7 +117,7 @@
     <TableLayout
         android:id="@+id/TableLayout"
         android:layout_width="328dp"
-        android:layout_height="330dp"
+        android:layout_height="273dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -132,34 +132,34 @@
 
     <ImageButton
         android:id="@+id/arrow_up"
-        android:layout_width="92dp"
-        android:layout_height="82dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/TableLayout"
         app:layout_constraintEnd_toEndOf="@+id/TableLayout"
         app:layout_constraintStart_toStartOf="@+id/TableLayout"
         app:layout_constraintTop_toTopOf="@+id/TableLayout"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/arrow_up" />
 
     <ImageButton
         android:id="@+id/arrow_down"
-        android:layout_width="92dp"
-        android:layout_height="82dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/TableLayout"
         app:layout_constraintEnd_toEndOf="@+id/TableLayout"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="@+id/TableLayout"
         app:layout_constraintTop_toBottomOf="@+id/arrow_up"
-        app:layout_constraintVertical_bias="0.888"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/arrow_down" />
 
     <ImageButton
         android:id="@+id/arrow_right"
-        android:layout_width="92dp"
-        android:layout_height="82dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toTopOf="@+id/arrow_down"
         app:layout_constraintEnd_toEndOf="@+id/TableLayout"
         app:layout_constraintTop_toBottomOf="@+id/arrow_up"
@@ -167,18 +167,14 @@
 
     <ImageButton
         android:id="@+id/arrow_left"
-        android:layout_width="92dp"
-        android:layout_height="82dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/arrow_down"
         app:layout_constraintEnd_toStartOf="@+id/arrow_right"
-        app:layout_constraintHorizontal_bias="0.016"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/TableLayout"
         app:layout_constraintTop_toBottomOf="@+id/arrow_up"
-        app:layout_constraintVertical_bias="0.388"
         app:srcCompat="@drawable/arrow_left" />
 
 

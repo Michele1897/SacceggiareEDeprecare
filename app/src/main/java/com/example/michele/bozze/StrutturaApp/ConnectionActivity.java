@@ -73,6 +73,9 @@ public class ConnectionActivity extends AppCompatActivity {
 
         Button connect = findViewById(R.id.pulsanteConnetti);
         connect.setOnClickListener(v -> {
+            //per Seba: piglia la globalVariables e fai setmDevice
+            //chiamare metodo per istanziare bluetoothModule
+
             startActivity(new Intent("android.intent.action.MainActivity"));
             // bisogna passare myDevice a qualcuno
             // si potrebbe salvarlo in GlobalVariables (oggetti application sono istanziati per prima e

@@ -1,7 +1,5 @@
 package com.example.michele.bozze.StrutturaApp;
 
-import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 
@@ -9,11 +7,9 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 
 import com.example.michele.bozze.R;
-import com.example.michele.bozze.Sezioni.ControlsFragment;
-import com.example.michele.bozze.Sezioni.SettingsFragment;
+import com.example.michele.bozze.Sezioni.AutomaticFragment;
+import com.example.michele.bozze.Sezioni.ManualFragment;
 import com.example.michele.bozze.Sezioni.StatisticsFragment;
-
-import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupViewPager(ViewPager viewpager){
-        mSectionsPageAdapter.addFragment(new SettingsFragment(), getString(R.string.tab_text_1));
-        mSectionsPageAdapter.addFragment(new ControlsFragment(), getString(R.string.tab_text_2));
+        mSectionsPageAdapter.addFragment(new AutomaticFragment(), getString(R.string.tab_text_1));
+        mSectionsPageAdapter.addFragment(new ManualFragment(), getString(R.string.tab_text_2));
         mSectionsPageAdapter.addFragment(new StatisticsFragment(), getString(R.string.tab_text_3));
         viewpager.setAdapter(mSectionsPageAdapter);
     }

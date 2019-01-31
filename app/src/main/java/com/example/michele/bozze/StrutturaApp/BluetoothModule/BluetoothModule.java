@@ -151,7 +151,7 @@ public class BluetoothModule {
 
                 case 0 :
                     {// e' un messaggio di colore trovato
-                        gv.modificaTrovati((int) msg[2], 1);
+                        //gv.modificaTrovati((int) msg[2], 1);
 
                     break;
                     }
