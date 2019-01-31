@@ -22,6 +22,9 @@ import com.example.michele.bozze.StrutturaApp.BluetoothModule.BluetoothModule;
 
 public class GlobalVariables extends Application {
 
+    private static final String TAG = "Global Variables";
+
+
     /*
     Ordine dei colori (numero restituito dal robot):
         0: No color
@@ -130,6 +133,27 @@ public class GlobalVariables extends Application {
 
     public void setNotCollectedObjects(int notCollectedObjects) {
         this.notCollectedObjects = notCollectedObjects;
+    }
+
+    public void setupConnection(BluetoothDevice device){
+        mDevice = device;
+        Log.e(TAG, "sto per istanziare btm...");
+        b1 = new BluetoothModule(device, this);//istanzia btm
+        Log.e(TAG, "istanziato btm, sto per lanciare start...");
+        // questo e per iniziare a ricevere richieste di connessione
+
+        b1.start();
+
+        //questo e per inviare richiesta di connessione sicura o meno
+        //boolean secure = false;
+        //boolean secure = true;
+        //b1.connect(secure);
+        Log.e(TAG, "lanciato start");
+    }
+
+    //GETTER DELLA BTM
+    public BluetoothModule useBluetooth(){
+        return b1;
     }
 }
 

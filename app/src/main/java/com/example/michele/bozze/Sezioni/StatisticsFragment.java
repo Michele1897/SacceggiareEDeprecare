@@ -68,11 +68,6 @@ public class StatisticsFragment extends Fragment {
     public void updateTexts()
         {
 
-            //"hei globalvariables, dimmi dimmi quanti oggetti abbiam arruffato"
-            //"dimmelo come sai fare tu, con un array"
-            // i numeri son messi in quest ordine:
-            //{trovatiRossi, trovatiGialli, trovatiVerdi, trovatiBlu, trovatiMarroni, trovatiNeri}
-            //coupling level: BLACK HOLE
             String warningskiller;
             /*int[] trovati = myVariables.giveTrovati();
             int totale = trovati[0] + trovati[1] + trovati[2] + trovati[3] + trovati[4] + trovati[5];

@@ -100,6 +100,7 @@ public class BluetoothModule {
         myDevice = tgt;
         mGlobalVariables = gbl;
         myself = this;
+        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
     }
 
     //THREAD VARI//
@@ -313,7 +314,7 @@ public class BluetoothModule {
                     //si posson inviare messaggi prima di aver ricevuto alcun messaggio
 
                     //INSERIRE QUI METODO PER UTILIZZARE DATI
-                    receiveMessage(buffer);
+                    receiveMessage(buffer, bytes);
 
                 } catch (IOException e) {
                     loggingFun("DISCONNESSO " + e.getMessage());
@@ -459,15 +460,16 @@ public class BluetoothModule {
     //METODO PER RICEVUTA NOTIFICA RACCOLTA OGGETTI
     //NB: INTERPRETA OGNI BYTE COME COMUNICAZIONE CHE UN OGGETTO DEL COLORE
     //    CONTENUTO NEL BYTE RAPPRESENTATO TRAMITE NUMERO, SIA STATO RACCOLTO
-    private void receiveMessage(byte[] message){
-        int length = message.length;
+    private void receiveMessage(byte[] message, int length){
+        //int length = message.length;
         int i;
         for (i=0;i<length;i++){//SCORRE DATI RICEVUTI
+            loggingFun("ANALIZZANDO POSIZIONE " + i + " di " + length);
             switch(message[i]) {//INTERPRETA BYTE PER BYTE
                 case COLORE_BIANCO: {
                     //mGlobalVariables.daiBianco();
                     mGlobalVariables.collectObject(message[i]);
-                    loggingFun("RILEVATO OGGETTO BIANCO");
+                    loggingFun("RILEVATO OGGETTO BIANCO ");
                     break;
                 }
                 case COLORE_BLU :{

@@ -4,19 +4,23 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import com.example.michele.bozze.Data.GlobalVariables;
 import com.example.michele.bozze.R;
 
 import java.util.Iterator;
 import java.util.Set;
 
 public class ConnectionActivity extends AppCompatActivity {
+    private final static String TAG = "Connection Activity";
 
     private BluetoothAdapter mBluetoothAdapter;
     private Set<BluetoothDevice> apparecchiAppaiati;
@@ -75,6 +79,13 @@ public class ConnectionActivity extends AppCompatActivity {
         connect.setOnClickListener(v -> {
             //per Seba: piglia la globalVariables e fai setmDevice
             //chiamare metodo per istanziare bluetoothModule
+
+            //da device a globalvariables
+            //metodo automaticamente istanzia bluetoothmodule e connette
+            GlobalVariables gv = (GlobalVariables) getApplication();
+            Log.e(TAG, myDevice.getName());
+            gv.setupConnection(myDevice);
+            //LOGGING GOES HERE
 
             startActivity(new Intent("android.intent.action.MainActivity"));
             // bisogna passare myDevice a qualcuno
