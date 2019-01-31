@@ -1,7 +1,8 @@
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
     <string name="app_name">Jolly Roger</string>
-    <string name="tab_text_1">Impostazioni</string>
-    <string name="tab_text_2">Controllo</string>
+    <string name="tab_text_1">Automatico</string>
+    <string name="tab_text_2">Manuale</string>
     <string name="tab_text_3">Statistiche</string>
     <string name="action_settings">Settings</string>
     <string name="colore_pareti">Colore pareti</string>
@@ -11,6 +12,7 @@
     <string name="pinza">Pinza</string>
     <string name="braccio">Braccio</string>
     <string name="reset_impostazioni">Reset Impostazioni</string>
+    <string name="messaggio">Benvenuti nell\'app di Jolly Roger! Scegliete il vostro robot pirata! ARRGHHH!!!</string>
 
     <string name ="ogg_rilevati">Totale oggetti rilevati:</string>
     <string name ="ogg_raccolti">Totale oggetti raccolti:</string>
@@ -21,6 +23,7 @@
     <string name ="col_blu">Blu:</string>
     <string name ="col_marrone">Marroni:</string>
     <string name ="col_nero">Neri:</string>
+    <string name ="col_bianchi">Bianchi:</string>
     <string name="objects_colours" />
 
     <string name="icona_pirata" />
@@ -63,4 +66,29 @@
         <item>Marroni:</item>
         <item>Neri:</item>
     </string-array>
+
+
+    <!--  Bluetooth -->
+    <string name="send">Send</string>
+    <string name="not_connected">You are not connected to a device</string>
+    <string name="bt_not_enabled_leaving">Bluetooth was not enabled. Leaving Bluetooth Chat.</string>
+    <string name="title_connecting">connecting...</string>
+    <string name="title_connected_to">connected to <xliff:g id="device_name">%1$s</xliff:g></string>
+    <string name="title_not_connected">not connected</string>
+
+    <!--  DeviceListActivity -->
+    <string name="scanning">scanning for devices...</string>
+    <string name="select_device">select a device to connect</string>
+    <string name="none_paired">No devices have been paired</string>
+    <string name="none_found">No devices found</string>
+    <string name="title_paired_devices">Paired Devices</string>
+    <string name="title_other_devices">Other Available Devices</string>
+    <string name="button_scan">Scan for devices</string>
+
+    <!-- Options Menu -->
+    <string name="secure_connect">Connect a device - Secure</string>
+    <string name="insecure_connect">Connect a device - Insecure</string>
+    <string name="discoverable">Make discoverable</string>
+
+
 </resources>

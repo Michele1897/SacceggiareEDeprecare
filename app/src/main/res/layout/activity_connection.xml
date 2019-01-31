@@ -30,8 +30,7 @@
         android:id="@+id/nomeApp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="28dp"
         android:contentDescription="@string/app_name"
         android:fontFamily="sans-serif-smallcaps"
         android:gravity="center_horizontal"
@@ -42,7 +41,7 @@
         android:textSize="36sp"
         android:textStyle="bold"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/pirata" />
@@ -52,8 +51,7 @@
         android:id="@+id/pulsanteConnetti"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/rounded_corners"
         android:requiresFadingEdge="horizontal|vertical"
         android:text="@string/connetti"
@@ -61,24 +59,29 @@
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/robot"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <ImageView
         android:id="@+id/robot"
-        android:layout_width="360dp"
-        android:layout_height="192dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="4dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginBottom="8dp"
         android:adjustViewBounds="true"
         android:scaleType="centerInside"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/messaggio"
+        app:layout_constraintTop_toBottomOf="@+id/pulsanteConnetti"
+        app:layout_constraintVertical_bias="0.434"
         app:srcCompat="@drawable/robot" />
 
     <LinearLayout
@@ -86,12 +89,10 @@
         android:layout_width="305dp"
         android:layout_height="32dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:background="@color/Bianco"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/pulsanteConnetti"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nomeApp">
@@ -111,5 +112,37 @@
             tools:layout_editor_absoluteY="243dp" />
 
     </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/fumetto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.169"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pulsanteConnetti"
+        app:layout_constraintVertical_bias="0.094"
+        app:srcCompat="@drawable/fumetto"
+        tools:text="@string/messaggio" />
+
+    <TextView
+        android:id="@+id/messaggio"
+        android:layout_width="139dp"
+        android:layout_height="66dp"
+        android:text="@string/messaggio"
+        android:textColor="@color/Nero"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/fumetto"
+        app:layout_constraintEnd_toEndOf="@+id/fumetto"
+        app:layout_constraintHorizontal_bias="0.542"
+        app:layout_constraintStart_toStartOf="@+id/fumetto"
+        app:layout_constraintTop_toTopOf="@+id/fumetto"
+        app:layout_constraintVertical_bias="0.361" />
+
 
 </android.support.constraint.ConstraintLayout>

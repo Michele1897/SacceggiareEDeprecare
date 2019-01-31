@@ -7,34 +7,36 @@
     android:layout_height="match_parent"
     android:background="@drawable/sfondo">
 
-    <Button
-        android:id="@+id/settings"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/gif"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Impostazioni"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/robot_gif"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/rounded_corners"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="@color/light_light_blue"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/reset"
+        app:layout_constraintVertical_bias="0.0"
+        android:visibility="invisible"/>
 
     <Button
         android:id="@+id/start"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Start"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:background="@drawable/rounded_corners"
         android:textAlignment="center"
         android:textAllCaps="false"
-        android:textColor="@color/light_light_blue" />
+        android:textColor="@color/light_light_blue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView5"
@@ -75,7 +77,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
         tools:visibility="visible"
-        android:background="@color/Bianco"
+        android:background="@color/Nero"
         />
 
     <TextView
@@ -87,7 +89,7 @@
         app:layout_constraintStart_toEndOf="@+id/square1"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
         tools:visibility="visible"
-        android:background="@color/Bianco" />
+        android:background="@color/Blu" />
 
     <TextView
         android:id="@+id/square3"
@@ -98,7 +100,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/square1"
         tools:visibility="visible"
-        android:background="@color/Bianco" />
+        android:background="@color/Verde" />
 
     <TextView
         android:id="@+id/square4"
@@ -109,7 +111,7 @@
         app:layout_constraintStart_toEndOf="@+id/square3"
         app:layout_constraintTop_toBottomOf="@+id/square2"
         tools:visibility="visible"
-        android:background="@color/Bianco" />
+        android:background="@color/Giallo" />
 
     <TextView
         android:id="@+id/square5"
@@ -120,7 +122,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/square3"
         tools:visibility="visible"
-        android:background="@color/Bianco" />
+        android:background="@color/Rosso" />
 
     <TextView
         android:id="@+id/square6"
@@ -133,6 +135,19 @@
         tools:visibility="visible"
         android:background="@color/Bianco"
         />
+
+    <TextView
+        android:id="@+id/square7"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toStartOf="@+id/number_square_7"
+        app:layout_constraintHorizontal_bias="0.852"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/number_square_5"
+        android:background="@color/Marrone" />
 
     <EditText
         android:id="@+id/number_square_1"
@@ -202,21 +217,35 @@
         app:layout_constraintTop_toBottomOf="@+id/number_square_4"
         />
 
+    <EditText
+        android:id="@+id/number_square_7"
+        android:layout_width="54dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="164dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/reset"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        app:layout_constraintVertical_bias="0.903" />
+
     <Button
         android:id="@+id/reset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="184dp"
-        android:text="Reset"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        android:layout_marginTop="260dp"
         android:background="@drawable/rounded_corners"
+        android:text="Reset"
         android:textAlignment="center"
         android:textAllCaps="false"
-        android:textColor="@color/light_light_blue"  />
+        android:textColor="@color/light_light_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <Button
         android:id="@+id/infinite1"
@@ -301,5 +330,34 @@
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/light_light_blue"/>
+
+
+    <Button
+        android:id="@+id/infinite7"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="24dp"
+        android:text="∞"
+        app:layout_constraintStart_toEndOf="@+id/reset"
+        app:layout_constraintTop_toBottomOf="@+id/number_square_6"
+        android:background="@drawable/rounded_corners"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/light_light_blue" />
+
+    <Button
+        android:id="@+id/stop"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Stop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/rounded_corners"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/light_light_blue"
+        />
 
 </android.support.constraint.ConstraintLayout>

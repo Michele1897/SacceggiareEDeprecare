@@ -5,14 +5,14 @@
     <color name="blue">#000066</color>
     <color name="green">#029688</color>
     <color name="light_blue">#169bd5</color>
-    <color name="light_light_blue">#d4e4e2</color>
+    <color name="light_light_blue">#D4E4E2</color>
     <color name="colorAccent">#d81b60</color>
-
+    <color name="Grigio">#C3FAFCFC</color>
 
     <color name="Rosso">#FF0000</color>
     <color name="Blu">#0000FF</color>
     <color name="Nero">#000000</color>
-    <color name="Bianco">#ffffff</color>
+    <color name="Bianco">#FFFFFF</color>
     <color name="Verde">#00FF00</color>
     <color name="Giallo">#FFFF00</color>
     <color name="Marrone">#964B00</color>

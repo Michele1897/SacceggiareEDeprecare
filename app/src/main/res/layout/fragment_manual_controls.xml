@@ -9,22 +9,28 @@
     <LinearLayout
         android:id="@+id/LinearLayoutEsterno"
         android:layout_width="376dp"
-        android:layout_height="103dp"
+        android:layout_height="126dp"
         android:layout_margin="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/TableLayout"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.578"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.04">
 
         <LinearLayout
             android:id="@+id/LinearLayout2"
             android:layout_width="match_parent"
             android:layout_height="51dp"
-            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
 
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
             tools:layout_editor_absoluteY="172dp">
 
             <TextView
@@ -46,11 +52,11 @@
             <SeekBar
                 android:id="@+id/SeekBar_braccio"
                 android:layout_width="match_parent"
-                android:layout_height="33dp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_height="match_parent"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
                 android:progressTint="@color/green"
                 android:thumbTint="@color/green"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -66,7 +72,6 @@
             android:id="@+id/LinearLayout1"
             android:layout_width="match_parent"
             android:layout_height="51dp"
-            android:layout_marginTop="8dp"
             android:orientation="horizontal"
             app:layout_constraintBottom_toTopOf="@+id/LinearLayout2"
             app:layout_constraintTop_toTopOf="parent"
@@ -92,11 +97,11 @@
             <SeekBar
                 android:id="@+id/SeekBar_pinza"
                 android:layout_width="match_parent"
-                android:layout_height="33dp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_height="match_parent"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
                 android:progressTint="@color/green"
                 android:thumbTint="@color/green"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -108,5 +113,69 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <TableLayout
+        android:id="@+id/TableLayout"
+        android:layout_width="328dp"
+        android:layout_height="273dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/Grigio"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LinearLayoutEsterno"
+        app:layout_constraintVertical_bias="0.162" />
+
+    <ImageButton
+        android:id="@+id/arrow_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/TableLayout"
+        app:layout_constraintEnd_toEndOf="@+id/TableLayout"
+        app:layout_constraintStart_toStartOf="@+id/TableLayout"
+        app:layout_constraintTop_toTopOf="@+id/TableLayout"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/arrow_up" />
+
+    <ImageButton
+        android:id="@+id/arrow_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/TableLayout"
+        app:layout_constraintEnd_toEndOf="@+id/TableLayout"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="@+id/TableLayout"
+        app:layout_constraintTop_toBottomOf="@+id/arrow_up"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/arrow_down" />
+
+    <ImageButton
+        android:id="@+id/arrow_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/arrow_down"
+        app:layout_constraintEnd_toEndOf="@+id/TableLayout"
+        app:layout_constraintTop_toBottomOf="@+id/arrow_up"
+        app:srcCompat="@drawable/arrow_right" />
+
+    <ImageButton
+        android:id="@+id/arrow_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/arrow_down"
+        app:layout_constraintEnd_toStartOf="@+id/arrow_right"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/TableLayout"
+        app:layout_constraintTop_toBottomOf="@+id/arrow_up"
+        app:srcCompat="@drawable/arrow_left" />
+
 
 </android.support.constraint.ConstraintLayout>
