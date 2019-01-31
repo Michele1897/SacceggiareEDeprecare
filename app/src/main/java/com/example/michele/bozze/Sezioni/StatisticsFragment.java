@@ -43,7 +43,6 @@ public class StatisticsFragment extends Fragment {
         setNumbers();
 
 
-
         return view;
     }
         //prende da GlobalVariables i valori e li mette nelle celle
