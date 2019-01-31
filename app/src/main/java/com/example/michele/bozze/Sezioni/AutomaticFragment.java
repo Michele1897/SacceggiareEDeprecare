@@ -52,82 +52,63 @@ public class AutomaticFragment extends Fragment {
 
         GlobalVariables g = (GlobalVariables)(getActivity().getApplication());
 
-        //collega gli elementi grafici agli oggetti presenti in questo codice
-        initializeElements();
+            //collega gli elementi grafici agli oggetti presenti in questo codice
+            initializeElements();
 
-        //azione di inserire infinito per ogni bottone
-        setInfiniteAction();
+            //azione di inserire infinito per ogni bottone
+            setInfiniteAction();
 
-        //fa partire l'esecuzione
-        start = rootView.findViewById(R.id.start);
-        start.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                if(!started) {
-                    started = !started;
-                    setHidden();
-                    robot.setVisibility(View.VISIBLE);
-                    if(!initializedResearch) {
-                        initializedResearch = !initializedResearch;
-                        int a[] = new int[7];
-                        for (int i = 0; i < a.length; i++) {
-                            if (number_squares[i].getText().toString().equals("∞")) a[i] = -1;
-                            else if (number_squares[i].getText().toString().equals("")) a[i] = 0;
-                            else a[i] = Integer.parseInt(number_squares[i].getText().toString());
-                        }
-                        //mandare l'array al robot e dirgli di partire
-
-                        //esempio prova funzioni
-                        g.setObjectsToCollect(a);
-                        g.collectObject(5);
-                        g.collectObject(4);
-                        g.collectObject(4);
-                        g.collectObject(4);
-                        while(true) {
-                            try {
-                                Thread.sleep(1000);
-                            } catch (Exception e) {
+            //fa partire l'esecuzione
+            start = rootView.findViewById(R.id.start);
+            start.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    if (!started) {
+                        started = !started;
+                        setHidden();
+                        robot.setVisibility(View.VISIBLE);
+                        if (!initializedResearch) {
+                            initializedResearch = !initializedResearch;
+                            int a[] = new int[7];
+                            for (int i = 0; i < a.length; i++) {
+                                if (number_squares[i].getText().toString().equals("∞")) a[i] = -1;
+                                else if (number_squares[i].getText().toString().equals(""))
+                                    a[i] = 0;
+                                else
+                                    a[i] = Integer.parseInt(number_squares[i].getText().toString());
                             }
-                            g.collectObject(4);
+                            g.setObjectsToCollect(a);
+                            //mandare l'array al robot e dirgli di partire
                         }
-                            /*
-                        Log.d("TEST","Inseriti dall'utente "+Arrays.toString(g.getObjectsToCollect()));
-                        Log.d("TEST","Oggetti ignorati "+Integer.toString(g.getNotCollectedObjects()));
-                        Log.d("TEST","Oggetti collezionati in totale "+Integer.toString(g.totalCollectedObjects()));
-                        Log.d("TEST","Oggetti rilevati "+Integer.toString(g.totalDetectedObjects()));
-                            */
                     }
                 }
-            }
-        });
+            });
 
-        //bottone stop nella schermata di controllo automatico
-        stop = rootView.findViewById(R.id.stop);
-        stop.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //bisogna stoppare il robot
-                if(started) {
-                    setVisible();
-                    robot.setVisibility(View.INVISIBLE);
-                    started = !started;
+            //bottone stop nella schermata di controllo automatico
+            stop = rootView.findViewById(R.id.stop);
+            stop.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    //bisogna stoppare il robot
+                    if (started) {
+                        setVisible();
+                        robot.setVisibility(View.INVISIBLE);
+                        started = !started;
+                    }
                 }
-            }
-        });
+            });
 
-        //bottone di reset per azzerare i numeri degli oggetti da cercare
-        reset = rootView.findViewById(R.id.reset);
-        reset.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                ((EditText)(rootView.findViewById(R.id.number_square_1))).setText("");
-                ((EditText)(rootView.findViewById(R.id.number_square_2))).setText("");
-                ((EditText)(rootView.findViewById(R.id.number_square_3))).setText("");
-                ((EditText)(rootView.findViewById(R.id.number_square_4))).setText("");
-                ((EditText)(rootView.findViewById(R.id.number_square_5))).setText("");
-                ((EditText)(rootView.findViewById(R.id.number_square_6))).setText("");
-                ((EditText)(rootView.findViewById(R.id.number_square_7))).setText("");
-            }
-        });
-
-
+            //bottone di reset per azzerare i numeri degli oggetti da cercare
+            reset = rootView.findViewById(R.id.reset);
+            reset.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    ((EditText) (rootView.findViewById(R.id.number_square_1))).setText("");
+                    ((EditText) (rootView.findViewById(R.id.number_square_2))).setText("");
+                    ((EditText) (rootView.findViewById(R.id.number_square_3))).setText("");
+                    ((EditText) (rootView.findViewById(R.id.number_square_4))).setText("");
+                    ((EditText) (rootView.findViewById(R.id.number_square_5))).setText("");
+                    ((EditText) (rootView.findViewById(R.id.number_square_6))).setText("");
+                    ((EditText) (rootView.findViewById(R.id.number_square_7))).setText("");
+                }
+            });
         return rootView;
     }
 
