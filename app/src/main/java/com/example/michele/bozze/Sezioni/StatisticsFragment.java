@@ -19,15 +19,15 @@ public class StatisticsFragment extends Fragment {
     TextView t [];
 
     public StatisticsFragment() {
-
     }
 
 
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_statistics,container,false);
         GlobalVariables g = (GlobalVariables)(getActivity().getApplication());
 
             //inizializzazione elementi grafici
+
         t =  new TextView[10];
         t[0] = view.findViewById(R.id.number_rilevati);
         t[1] = view.findViewById(R.id.number_raccolti);
@@ -39,6 +39,7 @@ public class StatisticsFragment extends Fragment {
         t[7] = view.findViewById(R.id.number_trovati_bianchi);
         t[8] = view.findViewById(R.id.number_trovati_marroni);
         t[9] = view.findViewById(R.id.number_non_raccolti);
+
 
         setNumbers();
 
