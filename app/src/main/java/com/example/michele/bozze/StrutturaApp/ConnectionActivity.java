@@ -79,11 +79,10 @@ public class ConnectionActivity extends AppCompatActivity {
         connect.setOnClickListener(v -> {
             //per Seba: piglia la globalVariables e fai setmDevice
             //chiamare metodo per istanziare bluetoothModule
-
+            GlobalVariables gv = (GlobalVariables) getApplication();
             //da device a globalvariables
             //metodo automaticamente istanzia bluetoothmodule e connette
             if(myDevice!=null){
-                GlobalVariables gv = (GlobalVariables) getApplication();
                 Log.e(TAG, myDevice.getName());
                 gv.setupConnection(myDevice);
             }
