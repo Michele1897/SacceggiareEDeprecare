@@ -64,33 +64,4 @@ public class StatisticsFragment extends Fragment {
 
     }
 
-    //metodo a parte perche va rimandato a ogni cambiamento di valori
-    public void updateTexts()
-        {
-
-            String warningskiller;
-            /*int[] trovati = myVariables.giveTrovati();
-            int totale = trovati[0] + trovati[1] + trovati[2] + trovati[3] + trovati[4] + trovati[5];
-            warningskiller = ""+ totale;
-            trovatiTotale.setText(warningskiller);
-            warningskiller =("" + trovati[0]);
-            trovatiRossi.setText(warningskiller);
-            warningskiller =(""+ trovati[1]);
-            trovatiGialli.setText(warningskiller);
-            warningskiller =(""+ trovati[2]);
-            trovatiVerdi.setText(warningskiller);
-            warningskiller =(""+ trovati[3]);
-            trovatiBlu.setText(warningskiller);
-            warningskiller =(""+ trovati[4]);
-            trovatiMarroni.setText(warningskiller);
-            warningskiller =(""+ trovati[5]);
-            trovatiNeri.setText(warningskiller);
-
-
-            //manca non raccolti
-            //nonRaccolti.setText(""+);
-            //manca rilevati
-            //rilevati.setText(""+);
-            */
-        }
 }

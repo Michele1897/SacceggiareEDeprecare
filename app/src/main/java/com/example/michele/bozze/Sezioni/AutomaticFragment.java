@@ -27,6 +27,8 @@ import pl.droidsonroids.gif.GifImageView;
 //come un array. Se vuoi posso fare una versione migliore
 public class AutomaticFragment extends Fragment {
 
+    private static final String TAG = "Automatic Fragment";
+
     //tutti gli elementi grafici
     Button start,stop,reset;
     TextView squares [];
@@ -78,8 +80,35 @@ public class AutomaticFragment extends Fragment {
                             }
                             g.setObjectsToCollect(a);
                             //mandare l'array al robot e dirgli di partire
+
+                            //azzera oggetti richiesti
+                            try {
+                                g.useBluetooth().annullaRichieste();
+                            }catch(Exception e){
+                                Log.e(TAG, e.getMessage());
+                            }
+
+                            //invia numero oggetti da trovare al bot
+                            int i;
+                            for(i=0;i<a.length;i++) {
+                                try {
+                                    g.useBluetooth().richiediOggetto(i + 1, a[i]);
+                                }catch(Exception e){
+                                    Log.e(TAG, e.getMessage());
+                                }
+                            }//
                         }
                     }
+                    //dice al bot di andare in automatico
+                    try {
+                        g.useBluetooth().vaiAutomatico();
+                    }
+                    catch(Exception e){
+                        Log.e(TAG, e.getMessage());
+                    }
+
+
+
                 }
             });
 
@@ -92,6 +121,12 @@ public class AutomaticFragment extends Fragment {
                         setVisible();
                         robot.setVisibility(View.INVISIBLE);
                         started = !started;
+                    }
+                    //di al bot di andare in manuale
+                    try {
+                        g.useBluetooth().vaiManuale();
+                    }catch(Exception e){
+                        Log.e(TAG, e.getMessage());
                     }
                 }
             });

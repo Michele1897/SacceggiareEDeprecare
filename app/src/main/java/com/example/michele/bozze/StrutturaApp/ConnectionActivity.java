@@ -27,6 +27,7 @@ public class ConnectionActivity extends AppCompatActivity {
     private BluetoothDevice myDevice;
 
 
+
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -85,8 +86,11 @@ public class ConnectionActivity extends AppCompatActivity {
             if(myDevice!=null){
                 Log.e(TAG, myDevice.getName());
                 gv.setupConnection(myDevice);
+
             }
-            //LOGGING GOES HERE
+            else{
+                Log.e(TAG, "myDevice null");
+            }
 
             startActivity(new Intent("android.intent.action.MainActivity"));
             // bisogna passare myDevice a qualcuno

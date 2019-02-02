@@ -366,7 +366,7 @@ public class BluetoothModule {
     //interpretatore messaggi input, lancia metodi del globalvariables
     //appropriati secondo dati appropriati interpretati dai byte ricevuti via bluetooth
 
-    void richiediOggetto(int colore, int quantit)
+    public void richiediOggetto(int colore, int quantit)
         {
             int i;//crea messaggio
             byte[] msg = new byte[quantit];
@@ -382,13 +382,55 @@ public class BluetoothModule {
             }
         }
 
+    public void annullaRichieste(){
+        byte[] msg = {8};
+        try {
+            sendData(msg);
+        }catch(IOException e){
+            loggingFun("ERRORE INVIO COMANDO AZZERAMENTO RICHIESTE: " + e.getMessage());
+        }
+    }
+
     //FUNZIONE CAMBIO MODALITA
-    public void cambiaModalita(){
+    public void vaiManuale(){
         byte[] msg = {9};
         try {
             sendData(msg);
         }catch(IOException e){
-            loggingFun("ERRORE INVIO COMANDO DI CAMBIO MODALITA: " + e.getMessage());
+            loggingFun("ERRORE INVIO COMANDO DI MODALITA MANUALE: " + e.getMessage());
+        }
+    }
+    public void vaiAutomatico(){
+        byte[] msg = {99};
+        try {
+            sendData(msg);
+        }catch(IOException e){
+            loggingFun("ERRORE INVIO COMANDO DI MODALITA AUTOMATICA: " + e.getMessage());
+        }
+    }
+
+
+    //FUNZIONI BRACCIO/PINZA
+    public void muoviBraccio(int position){
+        //position va da 0 a 100
+        int tru = position +1000;
+
+        byte[] msg = {(byte)tru};
+        try {
+            sendData(msg);
+        }catch(IOException e){
+            loggingFun("ERRORE INVIO MODIFICA BRACCIO: " + e.getMessage());
+        }
+    }
+    public void muoviPinza(int position){
+        //position va da 0 a 100
+        int tru = position +2000;
+
+        byte[] msg = {(byte)tru};
+        try {
+            sendData(msg);
+        }catch(IOException e){
+            loggingFun("ERRORE INVIO MODIFICA PINZA: " + e.getMessage());
         }
     }
 
@@ -446,7 +488,7 @@ public class BluetoothModule {
     private void sendData(byte[] message) throws IOException
     {//documentazione JAVA mi dice che OutputStream.write(byte[]) puo lanciare IOException, eg se loutputstream e chiuso
         if (mConnectedThread==null) {
-            loggingFun("NON CONNESSO, IMPOSSIBILE INVIARE DATI");
+            throw new IOException(" NO CONNECTED THREAD ATTIVO");
         }
         else {
             mConnectedThread.write(message);

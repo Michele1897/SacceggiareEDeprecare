@@ -10,13 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.SeekBar;
 import android.widget.Toast;
 
 import com.example.michele.bozze.Data.GlobalVariables;
 import com.example.michele.bozze.R;
 
 public class ManualFragment extends Fragment {
-
 
 
     private static final String TAG  = "MANUAL FRAGMENT";
@@ -41,14 +41,77 @@ public class ManualFragment extends Fragment {
         public boolean onTouch(View v, MotionEvent event) {
             if (event.getAction() == MotionEvent.ACTION_BUTTON_PRESS) {
                 //g.useBluetooth().muoviAvanti();
-
-            } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                Log.e(TAG,"ACTION BUTTON PRESS");
+            }
+            if (event.getAction() == MotionEvent.ACTION_BUTTON_RELEASE) {
                 // g.useBluetooth().fermati();
-                Toast.makeText(me, "ACTION UP", Toast.LENGTH_LONG);
-            }//NON SEMBRA RICONOSCERE ACTION DOWN
+                Log.e(TAG,"ACTION BUTTON RELEASE");
+            }
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                // g.useBluetooth().fermati();
+                Log.e(TAG,"ACTION DOWN");
+            }
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                // g.useBluetooth().fermati();
+                Log.e(TAG,"ACTION UP");
+            }
             return false;
         }
     });
+
+        SeekBar barraPinza = rootView.findViewById(R.id.SeekBar_pinza);
+        SeekBar barraBraccio = rootView.findViewById(R.id.SeekBar_braccio);
+
+        barraBraccio.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (fromUser == true){
+                    Log.e(TAG, "utente vuole muovere braccio");
+                    try {
+                        g.useBluetooth().muoviBraccio(progress);
+                    }catch(Exception e){
+                        Log.e(TAG, e.getMessage());
+                    }
+
+                }//
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        barraPinza.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (fromUser == true){
+                    Log.e(TAG, "utente vuole muovere pinza");
+                    try {
+                        g.useBluetooth().muoviPinza(progress);
+                    }catch(Exception e){
+                        Log.e(TAG, e.getMessage());
+                    }
+
+                }//
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
 
         return rootView;
     }

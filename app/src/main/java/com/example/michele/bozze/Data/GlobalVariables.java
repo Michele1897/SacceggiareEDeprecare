@@ -152,8 +152,13 @@ public class GlobalVariables extends Application {
     }
 
     //GETTER DELLA BTM
-    public BluetoothModule useBluetooth(){
-        return b1;
+    public BluetoothModule useBluetooth() throws Exception{
+        if (b1==null){
+            throw new Exception("BLUETOOTHMODULE NULLO, NON ISTANZIATO");
+        }
+        else {
+            return b1;
+        }
     }
 }
 
