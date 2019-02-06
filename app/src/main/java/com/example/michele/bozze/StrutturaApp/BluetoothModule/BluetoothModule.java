@@ -411,11 +411,13 @@ public class BluetoothModule {
 
 
     //FUNZIONI BRACCIO/PINZA
+    
+    //(byte) int funziona solo per int <257
+    //per pinza/braccio bisogna inviare 2 byte.
     public void muoviBraccio(int position){
         //position va da 0 a 100
-        int tru = position +1000;
-
-        byte[] msg = {(byte)tru};
+        
+        byte[] msg = {(byte)55, (byte)position};
         try {
             sendData(msg);
         }catch(IOException e){
@@ -426,7 +428,7 @@ public class BluetoothModule {
         //position va da 0 a 100
         int tru = position +2000;
 
-        byte[] msg = {(byte)tru};
+        byte[] msg = {(byte)56, (byte)position};
         try {
             sendData(msg);
         }catch(IOException e){
