@@ -435,6 +435,60 @@ public class BluetoothModule {
             loggingFun("ERRORE INVIO MODIFICA PINZA: " + e.getMessage());
         }
     }
+    
+    //funzioni alt
+        public void muoviPinzaAlt(int position){
+        //position va da 0 a 100
+            int content;
+        if (position < 25)
+            {
+            content = 30;
+            }
+        else if (position < 50)
+            {
+            content = 31;
+            }
+        else if (position < 75)
+            {
+            content = 32;
+            }
+        else if (position == 100)
+            {
+            content = 33;
+            }
+        byte[] msg = {(byte)content};
+        try {
+            sendData(msg);
+        }catch(IOException e){
+            loggingFun("ERRORE INVIO MODIFICA PINZA: " + e.getMessage());
+        }
+    }
+    public void muoviBraccioAlt(int position){
+        //position va da 0 a 100
+            int content;
+        if (position < 25)
+            {
+            content = 40;
+            }
+        else if (position < 50)
+            {
+            content = 41;
+            }
+        else if (position < 75)
+            {
+            content = 42;
+            }
+        else if (position == 100)
+            {
+            content = 43;
+            }
+        byte[] msg = {(byte)content};
+        try {
+            sendData(msg);
+        }catch(IOException e){
+            loggingFun("ERRORE INVIO MODIFICA BRACCIO: " + e.getMessage());
+        }
+    }
 
     //FUNZIONI MOVIMENTO
     //    18
