@@ -439,7 +439,7 @@ public class BluetoothModule {
     //funzioni alt
         public void muoviPinzaAlt(int position){
         //position va da 0 a 100
-            int content;
+            int content = 30;
         if (position < 25)
             {
             content = 30;
@@ -465,7 +465,7 @@ public class BluetoothModule {
     }
     public void muoviBraccioAlt(int position){
         //position va da 0 a 100
-            int content;
+            int content = 40;
         if (position < 25)
             {
             content = 40;
