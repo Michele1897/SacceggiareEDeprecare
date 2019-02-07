@@ -41,7 +41,7 @@ public class BluetoothModule {
 
         /*
     Ordine dei colori (numero restituito dal robot):
-        0: No color
+        0: No color //IGNORATO
         1: Black
         2: Blue
         3: Green
@@ -644,7 +644,9 @@ public class BluetoothModule {
                 }
                 case NO_COLORE :{
                     //mGlobalVariables.daiNoColor();
-                    mGlobalVariables.collectObject(message[i]);
+
+                    //mGlobalVariables.collectObject(message[i]); //DA ERRORE PERCHE CERCA DI FARE array[0-1]
+
                     loggingFun("RILEVATO OGGETTO NO COLOR");
                     receivedMsg();
                     break;

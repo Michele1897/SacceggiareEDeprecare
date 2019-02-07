@@ -121,7 +121,7 @@ public class ConnectionActivity extends AppCompatActivity {
 
     }
 
-
+    //THREAD VA IN BUSYLOOP FINCHE LA BTM PASSATA ALL ISTANZIAZIONE NON RICEVE MESS DA 0 A 7
     public class MainActivityStarterThread extends Thread{
         BluetoothModule btm;
 
