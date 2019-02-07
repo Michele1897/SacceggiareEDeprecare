@@ -36,6 +36,9 @@ public class BluetoothModule {
     private final int STATE_CONNECTING =3;
     private final int STATE_NONE=4;
 
+
+    private boolean hoRicevutoQualcosa;
+
         /*
     Ordine dei colori (numero restituito dal robot):
         0: No color
@@ -101,6 +104,8 @@ public class BluetoothModule {
         mGlobalVariables = gbl;
         myself = this;
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+
+        hoRicevutoQualcosa = false;
     }
 
     //THREAD VARI//
@@ -553,6 +558,29 @@ public class BluetoothModule {
 
     }
 
+    //MESSAGGIO AUSILIARE CONNESSIONE?
+    public void sendConnected(){
+        String hello = "Hello";
+        byte[] msg = hello.getBytes();
+        try {
+            sendData(msg);
+        }catch (IOException e){
+            loggingFun("ERRORE INVIO HELLO" + e.getMessage());
+        }
+
+    }
+
+    public boolean ricevutoQualcosa(){
+        return hoRicevutoQualcosa;
+    }
+
+
+    //fun aux flag messaggio ricevuto
+    private void receivedMsg(){
+        hoRicevutoQualcosa = true;
+    }//horicqualc e inizializzat a false
+
+
     //MESSAGGI IN ENTRATA
 
     //METODO PER RICEVUTA NOTIFICA RACCOLTA OGGETTI
@@ -560,6 +588,7 @@ public class BluetoothModule {
     //    CONTENUTO NEL BYTE RAPPRESENTATO TRAMITE NUMERO, SIA STATO RACCOLTO
     private void receiveMessage(byte[] message, int length){
         //int length = message.length;
+
         int i;
         for (i=0;i<length;i++){//SCORRE DATI RICEVUTI
             loggingFun("ANALIZZANDO POSIZIONE " + i + " di " + length);
@@ -568,48 +597,56 @@ public class BluetoothModule {
                     //mGlobalVariables.daiBianco();
                     mGlobalVariables.collectObject(message[i]);
                     loggingFun("RILEVATO OGGETTO BIANCO ");
+                    receivedMsg();
                     break;
                 }
                 case COLORE_BLU :{
                     //mGlobalVariables.daiBlu();
                     mGlobalVariables.collectObject(message[i]);
                     loggingFun("RILEVATO OGGETTO BLU");
+                    receivedMsg();
                     break;
                 }
                 case COLORE_GIALLO :{
                     //mGlobalVariables.daiGiallo();
                     mGlobalVariables.collectObject(message[i]);
                     loggingFun("RILEVATO OGGETTO GIALLO");
+                    receivedMsg();
                     break;
                 }
                 case COLORE_MARRONE :{
                     //mGlobalVariables.daiMarrone();
                     mGlobalVariables.collectObject(message[i]);
                     loggingFun("RILEVATO OGGETTO MARRONE");
+                    receivedMsg();
                     break;
                 }
                 case COLORE_NERO :{
                     //mGlobalVariables.daiNero();
                     mGlobalVariables.collectObject(message[i]);
                     loggingFun("RILEVATO OGGETTO NERO");
+                    receivedMsg();
                     break;
                 }
                 case COLORE_ROSSO :{
                     //mGlobalVariables.daiRosso();
                     mGlobalVariables.collectObject(message[i]);
                     loggingFun("RILEVATO OGGETTO ROSSO");
+                    receivedMsg();
                     break;
                 }
                 case COLORE_VERDE :{
                     //mGlobalVariables.daiVerde();
                     mGlobalVariables.collectObject(message[i]);
                     loggingFun("RILEVATO OGGETTO VERDE");
+                    receivedMsg();
                     break;
                 }
                 case NO_COLORE :{
                     //mGlobalVariables.daiNoColor();
                     mGlobalVariables.collectObject(message[i]);
                     loggingFun("RILEVATO OGGETTO NO COLOR");
+                    receivedMsg();
                     break;
                 }
             //SWITCH/CASE PER IGNORARE DATI IMPROPRI

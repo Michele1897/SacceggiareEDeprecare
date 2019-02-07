@@ -15,7 +15,9 @@ import android.widget.Spinner;
 
 import com.example.michele.bozze.Data.GlobalVariables;
 import com.example.michele.bozze.R;
+import com.example.michele.bozze.StrutturaApp.BluetoothModule.BluetoothModule;
 
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -86,13 +88,30 @@ public class ConnectionActivity extends AppCompatActivity {
             if(myDevice!=null){
                 Log.e(TAG, myDevice.getName());
                 gv.setupConnection(myDevice);
+                try{
+                    BluetoothModule btm = gv.useBluetooth();
+                    MainActivityStarterThread thr = new MainActivityStarterThread(btm);
+                    thr.start();
+                }
+                catch (Exception e){
+                    Log.e(TAG, "manca la BTM? " + e.getMessage());
+                }
 
+
+
+
+
+
+                //startActivity(new Intent("android.intent.action.MainActivity"));
             }
             else{
                 Log.e(TAG, "myDevice null");
             }
 
-            startActivity(new Intent("android.intent.action.MainActivity"));
+            //startActivity(new Intent("android.intent.action.MainActivity"));
+
+
+
             // bisogna passare myDevice a qualcuno
             // si potrebbe salvarlo in GlobalVariables (oggetti application sono istanziati per prima e
             // ottenibili da qls activity tramite getApplication)
@@ -101,4 +120,26 @@ public class ConnectionActivity extends AppCompatActivity {
         });
 
     }
+
+
+    public class MainActivityStarterThread extends Thread{
+        BluetoothModule btm;
+
+        public MainActivityStarterThread(BluetoothModule asd){
+            this.btm = asd;
+        }
+        @Override
+        public void run() {
+            Log.e(TAG, "MAIN ACTIVITY STARTER THREAD PARTITO");
+            while (btm.ricevutoQualcosa()==false)
+                {}//busy loop
+            Log.e(TAG, "RICEVUTO QUALCOSA, ORA CREO MAIN ACTIVITY...");
+            startActivity(new Intent("android.intent.action.MainActivity"));
+
+        }
+    }
+
+
 }
+
+
